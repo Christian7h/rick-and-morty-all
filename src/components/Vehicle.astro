@@ -1,0 +1,40 @@
+---
+const { vehicle } = Astro.props;
+
+// Verifica si `vehicle` está definido
+console.log(vehicle);
+---
+
+<div class="vehicle-card p-4 border rounded shadow-md bg-gray-800">
+  <h4 class="text-xl font-bold mb-2 text-white">{vehicle?.make || 'Marca no disponible'}</h4>
+  <h4 class="text-xl font-bold mb-2 text-white">{vehicle?.model || 'Modelo no disponible'}</h4>
+  <h3 class="text-xl font-bold mb-2 text-white">{vehicle?.year || 'Año no disponible'}</h3>
+  <p class="text-gray-300"><strong>{vehicle?.vehicleDescription || 'Descripción no disponible'}</strong></p>
+  <p class="text-gray-300"><strong>Tipo de combustible: </strong>{vehicle?.fueltype || 'No disponible'}</p>
+  <p class="text-gray-300"><strong>Consumo en ciudad: </strong>{vehicle?.city08 || 'N/D'} MPG</p>
+  <p class="text-gray-300"><strong>Consumo en carretera: </strong>{vehicle?.highway08 || 'N/D'} MPG</p>
+  <p class="text-gray-300"><strong>Consumo combinado: </strong>{vehicle?.comb08 || 'N/D'} MPG</p>
+  <p class="text-gray-300"><strong>Emisiones de CO2: </strong>{vehicle?.co2 || 'N/D'} g/km</p>
+  <p class="text-gray-300"><strong>Costo anual de combustible: $</strong>{vehicle?.fuelcost08 || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Tipo de tracción: </strong>{vehicle?.drive || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Transmisión: </strong>{vehicle?.trany || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Cilindros: </strong>{vehicle?.cylinders || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Desplazamiento: </strong>{vehicle?.displ || 'N/D'} L</p>
+  <p class="text-gray-300"><strong>Puntuación de gases de efecto invernadero: </strong>{vehicle?.ghgscore || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Clase del vehículo: </strong>{vehicle?.vclass || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Descripción del motor: </strong>{vehicle?.eng_dscr ? vehicle.eng_dscr.join(', ') : 'N/D'}</p>
+  <p class="text-gray-300"><strong>Tipo de combustible 1: </strong>{vehicle?.fueltype1 || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Tipo de combustible 2: </strong>{vehicle?.fueltype2 || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Barriles de combustible por año: </strong>{vehicle?.barrels08 || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Ahorro/Gasto estimado: </strong>{vehicle?.yousavespend || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Cargador de transmisión: </strong>{vehicle?.tcharger || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Supercargador: </strong>{vehicle?.scharger || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Sistema Start/Stop: </strong>{vehicle?.startstop || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Modelo base: </strong>{vehicle?.basemodel || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Código del fabricante: </strong>{vehicle?.mfrcode || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Creado el: </strong>{vehicle?.createdon || 'N/D'}</p>
+  <p class="text-gray-300"><strong>Modificado el: </strong>{vehicle?.modifiedon || 'N/D'}</p>
+</div>
+  {/* Descomenta la línea de abajo para mostrar la miniatura si está disponible */}
+  {/* {vehicle?.thumbnail && <img src={vehicle.thumbnail} alt={vehicle.model || 'Imagen del vehículo'} class="mt-4 rounded-lg"/>} */}
+</div>

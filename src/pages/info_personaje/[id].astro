@@ -1,0 +1,46 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    // Fetch de los personajes
+    const response = await fetch('https://rickandmortyapi.com/api/character');
+    const data = await response.json();
+
+    // Crear las rutas estáticas basadas en los IDs de los personajes
+    const paths = data.results.map((personaje: { id: string }) => ({
+        params: { id: personaje.id.toString() }, // Asegurarse de que el ID sea un string
+        props: { personaje } // También puedes pasar props aquí si los necesitas
+    }));
+
+    // Retornar directamente el array de rutas
+    return paths;
+}
+
+export async function getStaticProps({ params }) {
+    // Fetch de un solo personaje basado en la ID de los params
+    const response = await fetch(`https://rickandmortyapi.com/api/character/${params.id}`);
+    const personaje = await response.json();
+
+    return {
+        props: {
+            personaje,
+        },
+    };
+}
+
+const { name, image, status, species, location, origin, gender, episode } = Astro.props.personaje;
+---
+<Layout title={`Personaje: ${name}`}>
+    <h1 class="text-black border rounded-lg text-center font-bold text-3xl underline underline-offset-2">ALL</h1>
+    <div class="flex gap-2 bg-gray-600 mt-2 text-white w-[60%] mx-auto rounded-lg">
+        <img src={image} alt={name} / class="rounded-lg">
+        <div class="text-2xl my-auto pl-12 space-y-2 ">
+            <p class="my-auto">Status: {status}</p>
+            <p class="my-auto">Species: {species}</p>
+            <p class="my-auto">Gender: {gender}</p>
+            <p class="my-auto">Origin: {origin.name}</p>
+            <p class="my-auto">Last Known Location: {location.name}</p>
+            <p class="my-auto">Number of Episodes: {episode.length}</p>
+        </div>
+    </div>
+</Layout>

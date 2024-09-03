@@ -1,0 +1,22 @@
+---
+const { personaje } = Astro.props;
+const { name, image, id, status, species } = personaje;
+---
+
+<div class="py-4 sm:py-6 bg-slate-200">
+    <div class=" max-w-7xl w-[60vh] h-[60vh] mx-auto">
+      <ul class="flex justify-center ">
+        <li class="bg-white shadow rounded-lg overflow-hidden">
+          <a href={`/info_personaje/${id}`} class="block">
+            <div class="group relative">
+              <img src={image} alt={name} class="object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-110" />
+              <div class="absolute bottom-0 w-full p-4 bg-gray-800 bg-opacity-75 text-white transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                <h3 class="text-lg font-bold">{name}</h3>
+                <p class="text-sm font-light">{status} - {species}</p>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
